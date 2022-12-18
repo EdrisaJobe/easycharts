@@ -22,37 +22,26 @@
       <!-- Input/Button fields-->
       <input type="file" id="document" accept=".csv" required />
       <input type="submit" id="upload" value="Upload" />
+      <button onclick="updateChart('aceInfo')">Update ACE</button>
+      <button onclick="updateChart('acsfInfo')">Update ACSF</button>
+      <button onclick="updateChart('legacyInfo')">Update Legacy</button>
     </div>
     <hr />
 
     <!-- Bar Chart -->
     <div class="chart">
-      <canvas id="myChart"></canvas>
+      <canvas id="bar-chart"></canvas>
     </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      const ctx = document.getElementById("myChart");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-          datasets: [
-            {
-              label: "# of Votes",
-              data: [12, 19, 3, 5, 2, 3],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    </script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"
+      integrity="sha512-SGWgwwRA8xZgEoKiex3UubkSkV1zSE1BS6O4pXcaxcNtUlQsOmOmhVnDwIvqGRfEmuz83tIGL13cXMZn6upPyg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="{% static 'js/bar_chart.js' %}"></script>
   </body>
 </html>
 {% endblock navbar %}
