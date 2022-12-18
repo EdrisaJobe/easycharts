@@ -1,0 +1,39 @@
+{% extends 'app/navbar.html' %}
+<!DOCTYPE html>
+{% load static %}
+{% block navbar %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <title>EasyCharts</title>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>What is EasyCharts?</h1>
+      <br />
+      <p>
+        It's a simple web application that allows you to input data that you can
+        then view as a chart. It makes it easy to views things on the go
+        without the need of creating a new chart via tools such as
+        <em>PowerPoint</em> or <em>Excel</em>.The tool is 100% free to use
+        for any form of graphing you need to do, just simply input the data and
+        the graph corresponds to all user input.
+        Lastly, this tool was mainly made to help NYState employees keep track
+        of necessary data with ease.
+        Feel free to use is as intended and submit any bugs via email at
+        <em>ed.jobe@yahoo.com.</em>
+      </p>
+      <br/><br/>
+      <h1>How to use it?</h1>
+      <p>Simply input the intended data inside the input fields clearly specified on each chart page.
+         Once you've placed an input you should see the page dynamically load to incorporate the new chnages otherwise refresh the page and try again.
+         This Application is very lighweight and easy to use, mess around with different charts to visualize how they look. Once you've entered all the values you've like
+         simply hit the download button to get it in excel format. Yep, it's that simple!</p>
+    </div>
+  </body>
+</html>
+{% endblock navbar %}

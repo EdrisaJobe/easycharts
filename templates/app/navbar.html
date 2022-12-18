@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'index' %}"
+             class="logo"
+            ><img src="{% static 'images/logo.png' %}" alt="Img not found" />
+            <span class="nav-item">Easy Chart</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'index' %}"
+            ><i class="fas fa-home"></i>
+            <span class="nav-item">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'barchart' %}"
+            ><i class="fas fa-chart-simple"></i>
+            <span class="nav-item">Bar Chart</span>
+          </a>
+        </li>
+        <li>
+          <a href="#"
+            ><i class="fas fa-chart-line"></i>
+            <span class="nav-item">Line Chart</span>
+          </a>
+        </li>
+        <li>
+            <a href="#"
+              ><i class="fas fa-chart-pie"></i>
+              <span class="nav-item">Pie Chart</span>
+            </a>
+        </li>
+      </ul>
+    </nav>
+  </body>
+</html>
+
+{% block navbar %}
+
+{% endblock %}
