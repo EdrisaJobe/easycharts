@@ -20,5 +20,7 @@ from app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('barchart/', views.bar_chart, name='barchart')
+    path('barchart/', views.bar_chart, name='barchart'),
+    path('linechart/', views.line_chart, name='linechart'),
+    path('piechart/', views.pie_chart, name='piechart')
 ]

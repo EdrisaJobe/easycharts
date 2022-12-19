@@ -1,14 +1,14 @@
 {% extends 'app/navbar.html' %}
-{% load static %} 
+{% load static %}
 
 {% block content %}
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="{% static 'css/chart.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/piechart.css' %}" />
   </head>
-
   <body>
-    <!-- Display Bar Chart -->
+
+    <!-- Display Line Chart -->
     <div class="chart">
       <canvas id="bar-chart"></canvas>
     </div>
@@ -46,7 +46,7 @@
       };
 
       const config = {
-        type: "bar",
+        type: "pie",
         data,
         options: {
           scales: {

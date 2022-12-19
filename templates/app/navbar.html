@@ -37,13 +37,13 @@
           </a>
         </li>
         <li>
-          <a href="#"
+          <a href="{% url 'linechart' %}"
             ><i class="fas fa-chart-line"></i>
             <span class="nav-item">Line Chart</span>
           </a>
         </li>
         <li>
-            <a href="#"
+            <a href="{% url 'piechart' %}"
               ><i class="fas fa-chart-pie"></i>
               <span class="nav-item">Pie Chart</span>
             </a>
@@ -53,6 +53,6 @@
   </body>
 </html>
 
-{% block navbar %}
+{% block content %}
 
 {% endblock %}
