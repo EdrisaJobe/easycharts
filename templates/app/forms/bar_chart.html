@@ -9,39 +9,56 @@
     <link rel="stylesheet" href="{% static 'css/chart.css' %}" />
   </head>
   <body>
-    <h2>Please upload a .CSV file</h2>
-
-    <!-- Form Input -->
-    <div class="container">
-      <p>
-        Once you've uploaded a file, the data will dynamically update and
-        display the chart.
-      </p>
-      <br />
-
-      <!-- Input/Button fields-->
-      <input type="file" id="document" accept=".csv" required />
-      <input type="submit" id="upload" value="Upload" />
-      <button onclick="updateChart('aceInfo')">Update ACE</button>
-      <button onclick="updateChart('acsfInfo')">Update ACSF</button>
-      <button onclick="updateChart('legacyInfo')">Update Legacy</button>
-    </div>
-    <hr />
-
-    <!-- Bar Chart -->
+    <!-- Display Bar Chart -->
     <div class="chart">
       <canvas id="bar-chart"></canvas>
     </div>
 
+    <!-- Input fields -->
+    <div class="container">
+      
+      <!-- Add data form -->
+      <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="add">Add Data</button>
+      </form>
+    
+      <!-- Reset form -->
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="del">Reset</button>
+      </form>
+
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"
-      integrity="sha512-SGWgwwRA8xZgEoKiex3UubkSkV1zSE1BS6O4pXcaxcNtUlQsOmOmhVnDwIvqGRfEmuz83tIGL13cXMZn6upPyg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="{% static 'js/bar_chart.js' %}"></script>
+    <script>
+      const data = {
+        labels: [{% for amount in amounts %} "{{ amount.category }}", {% endfor %}],
+        datasets: [
+          {
+            label: "# of Votes",
+            data: [{% for amount in amounts %} {{ amount.num_of_items }}, {% endfor %}],
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const config = {
+        type: "bar",
+        data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+      const barChart = new Chart(document.getElementById("bar-chart"), config);
+    </script>
   </body>
 </html>
 {% endblock navbar %}
