@@ -1,1 +1,1 @@
-web: gunicorn easychart.wsgi --log-file -
+web: gunicorn easycharts.wsgi:application --log-file -
