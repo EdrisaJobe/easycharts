@@ -7,19 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.css"
     />
-    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
   </head>
   <body>
     <nav>
       <ul>
         <li>
-          <a href="{% url 'index' %}"
-             class="logo"
+          <a href="{% url 'index' %}" class="logo"
             ><img src="{% static 'images/logo.png' %}" alt="Img not found" />
             <span class="nav-item">Easy Chart</span>
           </a>
@@ -43,16 +39,14 @@
           </a>
         </li>
         <li>
-            <a href="{% url 'piechart' %}"
-              ><i class="fas fa-chart-pie"></i>
-              <span class="nav-item">Pie Chart</span>
-            </a>
+          <a href="{% url 'piechart' %}"
+            ><i class="fas fa-chart-pie"></i>
+            <span class="nav-item">Pie Chart</span>
+          </a>
         </li>
       </ul>
     </nav>
   </body>
 </html>
 
-{% block content %}
-
-{% endblock %}
+{% block content %} {% endblock %}
