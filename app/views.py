@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.core.management import call_command
 from .models import UserInput
-from .forms import InputForm
+from .forms import InputForm, FileForm
+from openpyxl import load_workbook
 
 # Create your views here.
 def index(request):
@@ -16,19 +16,32 @@ def bar_chart(request):
     if request.method == "POST":
         
         form = InputForm(request.POST)
-        
+        file_form = FileForm(request.FILES.get('excel_file'))
+
         # save our data to database
         if form.is_valid():
             form.save()
             return redirect('barchart')
+
+        elif file_form.is_valid():
+
+            wb = load_workbook(file_form)
+            sheet = wb.active
+
+            data = []
+
+            for row in sheet.iter_rows():
+                data.append([cell.value for cell in row])
+            return render(request, 'app/forms/bar_chart.html', {'data':data})
         else:
             # reset the database
             UserInput.objects.all().delete()
             return redirect('barchart')
     else:
         form = InputForm()
+        file_form = FileForm()
     
-    return render(request, 'app/forms/bar_chart.html', {'amounts': amounts, 'form':form})
+    return render(request, 'app/forms/bar_chart.html', {'amounts': amounts, 'form':form, 'file_form':file_form})
 
 ### LINE CHART ###
 def line_chart(request):

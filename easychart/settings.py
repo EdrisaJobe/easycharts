@@ -25,7 +25,7 @@ MEDIA_ROOT = Path(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-*0seukqh*1=!7zaot)mudr5bf95+fe7ldn4btr-6*@%y70gt!9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*','easycharts.herokuapp.com']
 

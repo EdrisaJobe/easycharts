@@ -28,10 +28,53 @@
         {% csrf_token %}
         <button type="submit" class="del">Reset</button>
       </form>
+      <br><br>
 
+      <!-- File form -->
+      <form method="POST">
+        {% csrf_token %}
+        {{ file_form }}
+        <button type="submit" class="add">Upload</button>
+      </form>
     </div>
 
-    <!-- Scripts -->
+    <!-- Handle file input -->
+    {% if data %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const labels = []
+      const values = []
+
+      {% for row in data %}
+        labels.push("{{ row.0 }}")
+        values.push("{{ row.1 }}")
+      {% endfor %}
+
+      const config = {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "# of Items",
+              data: values,
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+      const barChart = new Chart(document.getElementById("bar-chart"), config);
+    </script>
+
+    <!-- Handle manual data input -->
+    {% else %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const data = {
@@ -58,6 +101,8 @@
       };
       const barChart = new Chart(document.getElementById("bar-chart"), config);
     </script>
+    {% endif %}
+    
   </body>
 </html>
 {% endblock content %}
