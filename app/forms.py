@@ -14,7 +14,7 @@ class InputForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(InputForm, self).__init__(*args, **kwargs)
-        self.fields['category'].required = False
+        self.fields['category'].required = True
         self.fields['num_of_items'].required = True
 
 class FileForm(forms.Form):

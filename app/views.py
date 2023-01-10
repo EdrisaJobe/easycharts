@@ -24,15 +24,8 @@ def bar_chart(request):
             return redirect('barchart')
 
         elif file_form.is_valid():
-
-            wb = load_workbook(file_form)
-            sheet = wb.active
-
-            data = []
-
-            for row in sheet.iter_rows():
-                data.append([cell.value for cell in row])
-            return render(request, 'app/forms/bar_chart.html', {'data':data})
+            pass
+            
         else:
             # reset the database
             UserInput.objects.all().delete()

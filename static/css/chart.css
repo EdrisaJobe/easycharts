@@ -1,5 +1,5 @@
 .container {
-  padding: 2em 1em 2em 0;
+  padding: 2em 2em 2em 0;
   box-sizing: border-box;
   border-radius: 2em;
   box-shadow: 0em 0em 1em 0em;
@@ -11,7 +11,8 @@
 }
 
 .file_form{
-  width: 75%
+  width: 79%;
+  display: inline-block;
 }
 
 .chart {
