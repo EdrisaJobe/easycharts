@@ -38,21 +38,30 @@
       </form>
     </div>
 
-    <!-- Handle file input -->
-    {% if data %}
+
+    {% if form_valid %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-      const labels = []
-      const values = []
+      {% comment %} const chartData = '/Users/edsmain/Desktop/test.csv'
 
-      {% for row in data %}
-        labels.push("{{ row.0 }}")
-        values.push("{{ row.1 }}")
-      {% endfor %}
+      d3.csv(chartData).then(function(points){
+        console.log(points)
+      }); {% endcomment %}
+
+      const data = {
+        labels: ['one','two','three','four','five'] ,
+        datasets: [
+          {
+            label: "# of Items",
+            data: [10,12,18,32,56] ,
+            borderWidth: 1,
+          },
+        ],
+      };
 
       const config = {
         type: "bar",
-        data: {
+        data, {
           labels: labels,
           datasets: [
             {
@@ -102,7 +111,6 @@
       const barChart = new Chart(document.getElementById("bar-chart"), config);
     </script>
     {% endif %}
-    
   </body>
 </html>
 {% endblock content %}

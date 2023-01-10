@@ -16,30 +16,23 @@
     <!-- Input fields -->
     <div class="container">
       
-      <!-- Add data form -->
-      <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="add">Add Data</button>
-      </form>
-    
       <!-- Reset form -->
       <form method="POST">
         {% csrf_token %}
-        <button type="submit" class="del">Reset</button>
+        {{ file_form }}
+        <button type="submit" class="add">Upload</button>
       </form>
-
     </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const data = {
-        labels: [{% for amount in amounts %} "{{ amount.category }}", {% endfor %}],
+        labels: ['Money'] ,
         datasets: [
           {
             label: "# of Items",
-            data: [{% for amount in amounts %} {{ amount.num_of_items }}, {% endfor %}],
+            data: [100],
             borderWidth: 1,
           },
         ],

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import UserInput
 from .forms import InputForm, FileForm
-from openpyxl import load_workbook
+import pandas as pd
 
 # Create your views here.
 def index(request):
@@ -16,7 +16,7 @@ def bar_chart(request):
     if request.method == "POST":
         
         form = InputForm(request.POST)
-        file_form = FileForm(request.FILES.get('excel_file'))
+        file_form = FileForm(request.FILES.get('csv_file'))
 
         # save our data to database
         if form.is_valid():
@@ -25,7 +25,6 @@ def bar_chart(request):
 
         elif file_form.is_valid():
             pass
-            
         else:
             # reset the database
             UserInput.objects.all().delete()
@@ -38,24 +37,25 @@ def bar_chart(request):
 
 ### LINE CHART ###
 def line_chart(request):
-    amounts = UserInput.objects.all()
     
+    data = []
     if request.method == "POST":
         
-        form = InputForm(request.POST)
+        file_form = FileForm(request.POST, request.FILES)
         
-        # save our data to database
-        if form.is_valid():
-            form.save()
-            return redirect('linechart')
-        else:
-            # reset the database
-            UserInput.objects.all().delete()
-            return redirect('linechart')
+        if file_form.is_valid():
+            
+            file = request.FILES['file']
+            
+            if file.endswith('.csv'):
+                data = pd.read_csv(file)
+                labels = data.columns.values.tolist()
+                data = data.values.tolist()
+        
     else:
-        form = InputForm()
-    
-    return render(request, 'app/forms/line_chart.html', {'amounts': amounts, 'form':form})
+        file_form = FileForm()
+        
+    return render(request, 'app/forms/line_chart.html', {'file_form':file_form, 'data':data, 'labels':labels})
 
 ### PIE CHART ###
 def pie_chart(request):
