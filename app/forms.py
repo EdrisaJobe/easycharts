@@ -7,7 +7,7 @@ class InputForm(forms.ModelForm):
         model = UserInput
         fields = "__all__"
         widgets = {
-            'category': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'label..'}),
+            'category': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'label...'}),
             'num_of_items': forms.TextInput(attrs={'class': 'form-control','placeholder':'value...'})
         }
 

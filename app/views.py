@@ -13,7 +13,6 @@ def bar_chart(request):
 
     data = {}
     labels = []
-    file_form = FileForm()
 
     # grab all model data instance
     values = UserInput.objects.all()
@@ -62,7 +61,6 @@ def line_chart(request):
 
     data = {}
     labels = []
-    file_form = FileForm()
 
     # grab all model data instance
     values = UserInput.objects.all()
@@ -80,8 +78,9 @@ def line_chart(request):
                 data = pd.read_excel(files)
                 data = data.to_dict(orient='list')
                 labels = list(data.keys())
-            except Exception as e:
+            except:
                 
+                UserInput.objects.all().delete()
                 return redirect('linechart')
 
         # save our data to database
@@ -106,19 +105,45 @@ def line_chart(request):
 ### PIE CHART ###
 def pie_chart(request):
     
-    amounts = UserInput.objects.all()
+    data = {}
+    labels = []
+
+    # grab all model data instance
+    values = UserInput.objects.all()
     
-    if request.method == 'POST':
-        form = InputForm(request.POST)
+    if request.method == "POST":
         
-        if form.is_valid():
-            form.save()
-            return redirect('piechart')
+        form = InputForm(request.POST)
+        file_form = FileForm(request.POST, request.FILES)
+
+        if file_form.is_valid():
+            file_form.save()
+            files = file_form.cleaned_data.get('files')
+
+            try:
+                data = pd.read_excel(files)
+                data = data.to_dict(orient='list')
+                labels = list(data.keys())
+            except:
+                
+                UserInput.objects.all().delete()
+                return redirect('piechart')
+
+        # save our data to database
+        elif form.is_valid():
+
+            try:
+                form.save()
+                return redirect('piechart')
+            except:
+                UserInput.objects.all().delete()
+                return redirect('piechart')
         else:
-            
+            # reset the database
             UserInput.objects.all().delete()
             return redirect('piechart')
     else:
         form = InputForm()
+        file_form = FileForm()
     
-    return render(request, 'app/forms/pie_chart.html', {'amounts':amounts, 'form':form})
+    return render(request, 'app/forms/pie_chart.html', {'values': values, 'form':form, 'file_form':file_form, 'data':data, 'labels':labels})

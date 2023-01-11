@@ -4,13 +4,13 @@
 {% block content %}
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="{% static 'css/chart.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/piechart.css' %}" />
   </head>
   <body>
 
     <!-- Display Line Chart -->
     <div class="chart">
-      <canvas id="bar-chart"></canvas>
+      <canvas id="pie-chart"></canvas>
     </div>
 
     <!-- Input fields -->
@@ -28,18 +28,58 @@
         {% csrf_token %}
         <button type="submit" class="del">Reset</button>
       </form>
+      <br><br>
+
+      <!-- Upload form -->
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ file_form }}
+        <button type="submit" class="add">Upload</button>
+        <p>Please only submit <em style="color:blue;">.xls</em> or <em style="color:blue">.xlsx</em> files.</em></p>
+      </form>
 
     </div>
 
-    <!-- Scripts -->
+   {% if data %}
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const data = {
-        labels: [{% for amount in amounts %} "{{ amount.category }}", {% endfor %}],
+        labels: {{ labels|safe }},
         datasets: [
           {
-            label: "# of Items",
-            data: [{% for amount in amounts %} {{ amount.num_of_items }}, {% endfor %}],
+            label: "Piechart Upload Data",
+            data: Object.values({{ data|safe }}),
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const config = {
+        type: "line",
+        data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+      const pieChart = new Chart(document.getElementById("pie-chart"), config);
+    </script>
+
+    {% else %}
+
+    <!-- Handle manual data input -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const data = {
+        labels: [{% for value in values %} "{{ value.category }}", {% endfor %}],
+        datasets: [
+          {
+            label: "Piechart Manual Data",
+            data: [{% for value in values %} {{ value.num_of_items }}, {% endfor %}],
             borderWidth: 1,
           },
         ],
@@ -56,8 +96,10 @@
           },
         },
       };
-      const barChart = new Chart(document.getElementById("bar-chart"), config);
+      const pieChart = new Chart(document.getElementById("pie-chart"), config);
     </script>
+    
+    {% endif %}
   </body>
 </html>
 {% endblock content %}
