@@ -1,17 +1,21 @@
 .container {
-    padding: 2em 0 2em 0;
+    padding: 2em 2em 2em 0;
     box-sizing: border-box;
     border-radius: 2em;
     box-shadow: 0em 0em 1em 0em;
     margin: 0 auto;
     text-align: center;
-    max-width: 70%;
+    max-width:fit-content;
     margin-top: 3em;
     margin-bottom: 1em;
   }
   
+  .file_form{
+    width: 79%;
+  }
+  
   .chart {
-    width: 60%;
+    width: 1000px;
     margin: 0 auto;
     margin-top: 3em;
   }
