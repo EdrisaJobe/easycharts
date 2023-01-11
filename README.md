@@ -13,8 +13,8 @@ JavaScript | Used to implement the basic functionality of the graph when the use
 
 Backend :toolbox:| Description|
 -------|------------|
-Django | Django is a well known Python backend web framework which I used to gather all the necessary information. Mainly used for template tagging and connecting all the HTML pages as well as migrating my project to a database. Also used as a form of site/token protection from malicious intruders.
-Python | All the script was written in Python alongside Django for backend implementation primarily functions regarding the logic for how the red dots are placed onto the Leaflet map while at the same time using Python to grab an API to display up to date numbers ([https://covidtracking.com/data/api](https://covid19api.com/)).
+Django | Django is a well known Python backend web framework which I used to gather all the necessary information. Mainly used for template tagging and connecting all the HTML pages as well as migrating my project to a database. Also used as a form of site/token protection from malicious intruders CSRF.
+Python | All the script was written in Python alongside Django for backend implementation primarily functions regarding the logic for how the chart is displayed on the HTML while using Chart.JS - [https://www.chartjs.org](https://www.chartjs.org).
 [ChartJS](https://www.chartjs.org/) | Used to display the accurate dynamic updates of different charts within its' database. I then used the provided data to take in custom values from user input.
 SQLLite | Used SQL to save save user input within the database which can then be retrieved thus being able to see the dynamic graph changes in real time. The database can also be resetted using the "Reset" button within the input area.
 
