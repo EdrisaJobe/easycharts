@@ -2,7 +2,7 @@
 This web application was made in order to ease the task of opening an Excel sheet and manually putting in data and then making a graph afterwards, with my solution you can add data to a graph which then dynamically updates in real time. This causes for less stress when needing to visualize something quick and don't want to make a whole Excel form to then convert data to view a chart. Note that at the current version V1.0 the app is very barebones and limited in the input size but this will change with future iterations.
 
 <a href="https://easycharts.herokuapp.com/"><img src="https://img.shields.io/badge/Link-Easy_Charts-2ea44f?style=for-the-badge" alt="Link - Easy Charts"></a>
-# Technology Used :hammer_and_wrench:
+## Technology Used :hammer_and_wrench:
 
 Frontend :gear:| Description|
 -------|------------|
@@ -27,3 +27,7 @@ Web-services :spider_web:| Description|
 -------|------------|
 Heroku | Heroku is a cloud platform for hosting and maintaining website information which I used to later connect the platform with GoDaddy. 
 GoDaddy| Domain was registered from GoDaddy alongside all DNS setup.
+
+# Visual Example
+<img width="1260" alt="Screen Shot 2023-01-11 at 1 18 10 PM" src="https://user-images.githubusercontent.com/48189579/211886280-7d3e9966-9ef7-4826-840d-e1dfa9add071.png">
+
