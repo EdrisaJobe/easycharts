@@ -31,67 +31,23 @@
       <br><br>
 
       <!-- File form -->
-      <form method="POST">
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ file_form }}
         <button type="submit" class="add">Upload</button>
       </form>
     </div>
 
-
-    {% if form_valid %}
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      {% comment %} const chartData = '/Users/edsmain/Desktop/test.csv'
-
-      d3.csv(chartData).then(function(points){
-        console.log(points)
-      }); {% endcomment %}
-
-      const data = {
-        labels: ['one','two','three','four','five'] ,
-        datasets: [
-          {
-            label: "# of Items",
-            data: [10,12,18,32,56] ,
-            borderWidth: 1,
-          },
-        ],
-      };
-
-      const config = {
-        type: "bar",
-        data, {
-          labels: labels,
-          datasets: [
-            {
-              label: "# of Items",
-              data: values,
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      };
-      const barChart = new Chart(document.getElementById("bar-chart"), config);
-    </script>
-
-    <!-- Handle manual data input -->
-    {% else %}
+    {% if data %}
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const data = {
-        labels: [{% for amount in amounts %} "{{ amount.category }}", {% endfor %}],
+        labels: {{ labels|safe }},
         datasets: [
           {
-            label: "# of Items",
-            data: [{% for amount in amounts %} {{ amount.num_of_items }}, {% endfor %}],
+            label: "Barchart Upload Data",
+            data: Object.values({{ data|safe }}),
             borderWidth: 1,
           },
         ],
@@ -110,7 +66,39 @@
       };
       const barChart = new Chart(document.getElementById("bar-chart"), config);
     </script>
+
+    {% else %}
+
+    <!-- Handle manual data input -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const data = {
+        labels: [{% for value in values %} "{{ value.category }}", {% endfor %}],
+        datasets: [
+          {
+            label: "Barchart Manual Data",
+            data: [{% for value in values %} {{ value.num_of_items }}, {% endfor %}],
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const config = {
+        type: "bar",
+        data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+      const barChart = new Chart(document.getElementById("bar-chart"), config);
+    </script>
+    
     {% endif %}
+
   </body>
 </html>
 {% endblock content %}

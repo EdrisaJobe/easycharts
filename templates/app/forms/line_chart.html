@@ -1,38 +1,53 @@
 {% extends 'app/navbar.html' %}
-{% load static %}
+{% load static %} 
 
 {% block content %}
 <html lang="en">
   <head>
     <link rel="stylesheet" href="{% static 'css/chart.css' %}" />
   </head>
-  <body>
 
-    <!-- Display Line Chart -->
+  <body>
+    <!-- Display Bar Chart -->
     <div class="chart">
-      <canvas id="bar-chart"></canvas>
+      <canvas id="line-chart"></canvas>
     </div>
 
     <!-- Input fields -->
     <div class="container">
       
+      <!-- Add data form -->
+      <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="add">Add Data</button>
+      </form>
+    
       <!-- Reset form -->
       <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="del">Reset</button>
+      </form>
+      <br><br>
+
+      <!-- File form -->
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ file_form }}
         <button type="submit" class="add">Upload</button>
       </form>
     </div>
 
-    <!-- Scripts -->
+    {% if data %}
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       const data = {
-        labels: ['Money'] ,
+        labels: {{ labels|safe }},
         datasets: [
           {
-            label: "# of Items",
-            data: [100],
+            label: "Linechart Upload Data",
+            data: Object.values({{ data|safe }}),
             borderWidth: 1,
           },
         ],
@@ -49,8 +64,41 @@
           },
         },
       };
-      const barChart = new Chart(document.getElementById("bar-chart"), config);
+      const barChart = new Chart(document.getElementById("line-chart"), config);
     </script>
+
+    {% else %}
+
+    <!-- Handle manual data input -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const data = {
+        labels: [{% for value in values %} "{{ value.category }}", {% endfor %}],
+        datasets: [
+          {
+            label: "Linechart Manual Data",
+            data: [{% for value in values %} {{ value.num_of_items }}, {% endfor %}],
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      const config = {
+        type: "line",
+        data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+      const barChart = new Chart(document.getElementById("line-chart"), config);
+    </script>
+    
+    {% endif %}
+
   </body>
 </html>
 {% endblock content %}

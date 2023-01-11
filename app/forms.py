@@ -1,6 +1,5 @@
 from django import forms
-from .models import UserInput
-from .validators import validate_file_extension
+from .models import UserInput, FileInputModel
 
 class InputForm(forms.ModelForm):
     
@@ -8,15 +7,15 @@ class InputForm(forms.ModelForm):
         model = UserInput
         fields = "__all__"
         widgets = {
-            'category': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'x-axis label...'}),
-            'num_of_items': forms.TextInput(attrs={'class': 'form-control','placeholder':'amount...'})
+            'category': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'label..'}),
+            'num_of_items': forms.TextInput(attrs={'class': 'form-control','placeholder':'value...'})
         }
-    
-    def __init__(self, *args, **kwargs):
-        super(InputForm, self).__init__(*args, **kwargs)
-        self.fields['category'].required = True
-        self.fields['num_of_items'].required = True
 
-class FileForm(forms.Form):
+class FileForm(forms.ModelForm):
 
-    files = forms.FileField(label='', widget=forms.FileInput(attrs={'class': 'file_form'}), validators=[validate_file_extension])
+    class Meta:
+        model = FileInputModel
+        fields = "__all__"
+        widgets = {
+            'files': forms.FileInput(attrs={'class':'file_form'})
+        }
