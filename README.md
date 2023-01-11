@@ -1,7 +1,7 @@
-# About EasyCharts
+# About Easy Charts
 This web application was made in order to ease the task of opening an Excel sheet and manually putting in data and then making a graph afterwards, with my solution you can add data to a graph which then dynamically updates in real time. This causes for less stress when needing to visualize something quick and don't want to make a whole Excel form to then convert data to view a chart. Note that at the current version V1.0 the app is very barebones and limited in the input size but this will change with future iterations.
 
-<a href="http://www.easychartsapp.com/"><img src="https://img.shields.io/badge/Link-Easy_Charts-2ea44f?style=for-the-badge" alt="Link - Easy Charts"></a>
+[![Link - Easy Charts](https://img.shields.io/badge/Link-Easy_Charts-3693F3?style=for-the-badge&logo=<svg+role%3D"img"+viewBox%3D"0+0+24+24"+xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"><title>iCloud<%2Ftitle><path+d%3D"M13.762+4.29a6.51+6.51+0+0+0-5.669+3.332+3.571+3.571+0+0+0-1.558-.36+3.571+3.571+0+0+0-3.516+3A4.918+4.918+0+0+0+0+14.796a4.918+4.918+0+0+0+4.92+4.914+4.93+4.93+0+0+0+.617-.045h14.42c2.305-.272+4.041-2.258+4.043-4.589v-.009a4.594+4.594+0+0+0-3.727-4.508+6.51+6.51+0+0+0-6.511-6.27z"%2F><%2Fsvg>)](https://www.easychartsapp.com/)
 ## Technology Used :hammer_and_wrench:
 
 Frontend :gear:| Description|
