@@ -31,5 +31,5 @@ GoDaddy| Domain was registered from GoDaddy alongside all DNS setup.
 # Visual Example
 <img width="1674" alt="Screen Shot 2023-01-11 at 2 39 35 PM" src="https://user-images.githubusercontent.com/48189579/211901900-3e9e9a9d-0556-42aa-946a-906f368a5f71.png">
 
-<img width="1260" alt="Screen Shot 2023-01-11 at 1 18 10 PM" src="https://user-images.githubusercontent.com/48189579/211886280-7d3e9966-9ef7-4826-840d-e1dfa9add071.png">
+<img width="1674" alt="Screen Shot 2023-01-11 at 2 40 45 PM" src="https://user-images.githubusercontent.com/48189579/211902144-3feea4f3-d990-4a23-9031-76513f4f1b52.png">
 
